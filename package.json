@@ -5,33 +5,36 @@
   "main": "gulpfile.js",
   "license": "LicenseRef-LICENSE",
   "scripts": {
+    "build": "gulp build",
+    "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Danny Calleri",
   "homepage": "http://dannycalleri.com",
   "devDependencies": {
-        "babel-preset-es2015": "^6.3.13",
-        "babel-preset-react": "^6.3.13",
-        "babelify": "^7.2.0",
-        "browser-sync": "^2.11.0",
-        "browserify": "^13.0.0",
-        "del": "^2.2.0",
-        "gulp": "^3.9.0",
-        "gulp-if": "^2.0.0",
-        "gulp-ruby-sass": "^2.0.6",
-        "gulp-shell": "^0.5.2",
-        "gulp-uglify": "^1.5.1",
-        "gulp-useref": "^3.0.4",
-        "gulp-util": "^3.0.7",
-        "react": "^0.14.6",
-        "react-dom": "^0.14.6",
-        "run-sequence": "^1.1.5",
-        "streamify": "^0.2.5",
-        "uglifyify": "^3.0.1",
-        "vinyl-buffer": "^1.0.0",
-        "vinyl-source-stream": "^1.1.0"
-    },
-    "peerDependencies": {
-        "react": "^0.14.6"
-    }
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babelify": "^7.2.0",
+    "browser-sync": "^2.11.0",
+    "browserify": "^13.0.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-if": "^2.0.0",
+    "gulp-ruby-sass": "^2.0.6",
+    "gulp-shell": "^0.5.2",
+    "gulp-uglify": "^1.5.1",
+    "gulp-useref": "^3.0.4",
+    "gulp-util": "^3.0.7",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "react-tools": "^0.13.3",
+    "run-sequence": "^1.1.5",
+    "streamify": "^0.2.5",
+    "uglifyify": "^3.0.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "peerDependencies": {
+    "react": "^0.14.6"
+  }
 }

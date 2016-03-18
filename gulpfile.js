@@ -68,7 +68,7 @@ gulp.task('serve', ['js', 'html'], function() {
 gulp.task('js', function(){
     // Setting debug to "true" will automatically generate source maps,
     // this way it's possible to debug individual .jsx files
-    browserify('./src/main.jsx', building ? {} : { debug: true })
+    browserify('./src/main.jsx', building ? { bundleExternal: false } : { debug: true })
         .transform(babelify, {presets: ["es2015", "react"]})
         .bundle()
         .pipe(source('react-light-select.min.js'))
