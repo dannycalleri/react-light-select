@@ -18,6 +18,7 @@ var browserify  = require("browserify");
 var babelify    = require("babelify");
 var source      = require("vinyl-source-stream");
 var rename      = require("gulp-rename");
+var globalShim  = require("browserify-global-shim");
 
 // http://stackoverflow.com/questions/24992980/how-to-uglify-output-with-browserify-in-gulp
 var buffer      = require("vinyl-buffer");
@@ -71,6 +72,7 @@ gulp.task('js', function(){
     // this way it's possible to debug individual .jsx files
     browserify(building ? './src/react-light-select.jsx' : './src/main.jsx', building ? { bundleExternal: false } : { debug: true })
         .transform(babelify, {presets: ["es2015", "react"]})
+        .transform(globalShim)
         .bundle()
         .pipe(source('react-light-select.js'))
         .pipe(buffer())
