@@ -17,6 +17,7 @@ var browserSync = require("browser-sync").create();
 var browserify  = require("browserify");
 var babelify    = require("babelify");
 var source      = require("vinyl-source-stream");
+var rename      = require("gulp-rename");
 
 // http://stackoverflow.com/questions/24992980/how-to-uglify-output-with-browserify-in-gulp
 var buffer      = require("vinyl-buffer");
@@ -71,9 +72,11 @@ gulp.task('js', function(){
     browserify('./src/main.jsx', building ? { bundleExternal: false } : { debug: true })
         .transform(babelify, {presets: ["es2015", "react"]})
         .bundle()
-        .pipe(source('react-light-select.min.js'))
+        .pipe(source('react-light-select.js'))
         .pipe(buffer())
+        .pipe(gulp.dest(building ? paths.distBuild : paths.debugBuild))
         .pipe(gulpIf(building, uglify().on('error', gulpUtil.log)))
+        .pipe(rename({ extname: '.min.js' }))
         .pipe(gulp.dest(building ? paths.distBuild : paths.debugBuild))
         .pipe(reload({stream: true}));
 });
