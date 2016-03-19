@@ -2,7 +2,7 @@
   "name": "react-light-select",
   "version": "0.1.0",
   "description": "A lightweight selectbox component for ReactJS",
-  "main": "gulpfile.js",
+  "main": "dist/react-light-select.min.js",
   "license": "LicenseRef-LICENSE",
   "scripts": {
     "build": "gulp build",
@@ -34,6 +34,9 @@
     "uglifyify": "^3.0.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+      "react": "^0.14.6"
   },
   "peerDependencies": {
     "react": "^0.14.6"
