@@ -1,18 +1,14 @@
-//import React from 'react';
+import React from 'react';
 
-class ReactLightSelect //extends React.Component
+class ReactLightSelect extends React.Component
 {
-    // render()
-    // {
-    //     return (
-    //         <div>
-    //             This is a selectbox
-    //         </div>
-    //     )
-    // }
-    getText()
+    render()
     {
-        return "Danny";
+        return (
+            <div>
+                This is a selectbox
+            </div>
+        )
     }
 }
 
