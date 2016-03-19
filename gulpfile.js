@@ -19,6 +19,7 @@ var babelify    = require("babelify");
 var source      = require("vinyl-source-stream");
 var rename      = require("gulp-rename");
 var globalShim  = require("browserify-global-shim");
+var babel       = require("gulp-babel");
 
 // http://stackoverflow.com/questions/24992980/how-to-uglify-output-with-browserify-in-gulp
 var buffer      = require("vinyl-buffer");
@@ -48,7 +49,7 @@ gulp.task('clean', require('del').bind(null, [paths.debugBuild, paths.distBuild]
 gulp.task('startBuilding', function(){ building = true; });
 gulp.task('default', ['clean'], function () { gulp.start('build'); });
 
-gulp.task('build', ['startBuilding', 'js', 'html'], function(){});
+gulp.task('build', ['startBuilding', 'build-js', 'html'], function(){});
 
 // Static Server + files watcher
 gulp.task('serve', ['js', 'html'], function() {
@@ -67,12 +68,38 @@ gulp.task('serve', ['js', 'html'], function() {
     gulp.watch(paths.app+"/**/*.html", ['html']);
 });
 
+gulp.task('build-js', function(){
+    return gulp.src(building ? './src/react-light-select.jsx' : './src/main.jsx')
+		.pipe(babel({
+			presets: ["es2015", "react"]
+		}))
+        .pipe(rename('react-light-select.js'))
+        // .pipe(source('react-light-select.js'))
+        // .pipe(buffer())
+        .pipe(gulp.dest(building ? paths.distBuild : paths.debugBuild))
+        .pipe(gulpIf(building, uglify().on('error', gulpUtil.log)))
+        .pipe(rename({ extname: '.min.js' }))
+        .pipe(gulp.dest(building ? paths.distBuild : paths.debugBuild))
+        .pipe(reload({stream: true}));
+
+    // Setting debug to "true" will automatically generate source maps,
+    // this way it's possible to debug individual .jsx files
+        // .transform(babelify, {presets: ["es2015", "react"]})
+        // .bundle()
+        // .pipe(source('react-light-select.js'))
+        // .pipe(buffer())
+        // .pipe(gulp.dest(building ? paths.distBuild : paths.debugBuild))
+        // .pipe(gulpIf(building, uglify().on('error', gulpUtil.log)))
+        // .pipe(rename({ extname: '.min.js' }))
+        // .pipe(gulp.dest(building ? paths.distBuild : paths.debugBuild))
+        // .pipe(reload({stream: true}));
+});
+
 gulp.task('js', function(){
     // Setting debug to "true" will automatically generate source maps,
     // this way it's possible to debug individual .jsx files
     browserify(building ? './src/react-light-select.jsx' : './src/main.jsx', building ? { bundleExternal: false } : { debug: true })
         .transform(babelify, {presets: ["es2015", "react"]})
-        .transform(globalShim)
         .bundle()
         .pipe(source('react-light-select.js'))
         .pipe(buffer())

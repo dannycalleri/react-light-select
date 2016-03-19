@@ -20,6 +20,7 @@
     "browserify-global-shim": "^1.0.3",
     "del": "^2.2.0",
     "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.2",
     "gulp-if": "^2.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-ruby-sass": "^2.0.6",
@@ -42,9 +43,5 @@
   },
   "peerDependencies": {
     "react": "^0.14.6"
-    },
-    "browserify-global-shim": {
-      "react": "React",
-      "react-dom": "ReactDOM"
-    }
+  }
 }
