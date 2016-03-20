@@ -49,7 +49,7 @@ gulp.task('clean', require('del').bind(null, [paths.debugBuild, paths.distBuild]
 gulp.task('startBuilding', function(){ building = true; });
 gulp.task('default', ['clean'], function () { gulp.start('build'); });
 
-gulp.task('build', ['startBuilding', 'build-js', 'html'], function(){});
+gulp.task('build', ['startBuilding', 'build-js'], function(){});
 
 // Static Server + files watcher
 gulp.task('serve', ['js', 'html'], function() {
@@ -115,6 +115,6 @@ gulp.task('html', function() {
             .pipe(useref())
             .pipe(gulpIf('*.js', uglify().on('error', gulpUtil.log)))
             //.pipe(gulpIf('*.css', minifyCss()))
-            .pipe(gulp.dest(building ? paths.distBuild : paths.debugBuild))
+            .pipe(gulp.dest(paths.debugBuild))
             .pipe(reload({stream: true}));
 });

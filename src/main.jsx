@@ -19,5 +19,5 @@ function data(cb)
 }
 
 ReactDOM.render((
-    <ReactLightSelect className="react-light-select" dataCallback={data} />
+    <ReactLightSelect dataCallback={data} />
 ), document.getElementById('app'));

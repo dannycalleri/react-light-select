@@ -6,7 +6,8 @@ class ReactLightSelect extends React.Component
     {
         super(props);
         this.state = {
-            options: []
+            options: [],
+            selectedOption: ''
         };
     }
 
@@ -26,6 +27,7 @@ class ReactLightSelect extends React.Component
     {
         this.props.dataCallback(function(options){
             this.setState({
+                selectedOption: options[0].label,
                 options: options
             });
         }.bind(this));
@@ -37,15 +39,20 @@ class ReactLightSelect extends React.Component
         if(this.state.options.length > 0)
         {
             select = (
-                <select className={ this.props.className } onChange={ this.onSelectChange }>
-                    {
-                        this.state.options.map(function(o,i){
-                            return (
-                                <option key={i} value={o.value}>{o.label}</option>
-                            )
-                        })
-                    }
-                </select>
+                <div className={ typeof this.props.className !== 'undefined' ? this.props.className : 'react-light-select' }>
+                    <div className="placeholder">
+                        { this.state.selectedOption }
+                    </div>
+                    <select onChange={ this.onSelectChange }>
+                        {
+                            this.state.options.map(function(o,i){
+                                return (
+                                    <option key={i} value={o.value}>{o.label}</option>
+                                )
+                            })
+                        }
+                    </select>
+                </div>
             );
         }
 
