@@ -5,13 +5,15 @@
 The elements list is your browser's default and works on every browser and device, it doesn't define a custom elements list.
 
 
+
 ## How to use it
 
 Simply run
 
     npm install react-light-select --save
 
-and require it with your favorite bundler (currently tested it with **Browserify**).
+and require it with your favorite bundler (currently tested with **Browserify**).
+
 
 Example:
 
@@ -21,7 +23,7 @@ or if you're using **ES6**
 
     import ReactLightSelect from 'react-light-select';
 
-Then use it like this (this is JSX, but you are free to use it in plain JS):
+Then use it like this (JSX style, but you are free to use it in plain JS):
 
     <ReactLightSelect dataCallback={data} />
 
