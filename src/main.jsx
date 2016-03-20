@@ -7,6 +7,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactLightSelect from './react-light-select.jsx';
 
+function data(cb)
+{
+    var options = [
+        {label:"Option A", value:"a"},
+        {label:"Option B", value:"b"},
+        {label:"Option C", value:"c"}
+    ];
+
+    cb(options);
+}
+
 ReactDOM.render((
-    <ReactLightSelect />
+    <ReactLightSelect className="react-light-select" dataCallback={data} />
 ), document.getElementById('app'));
