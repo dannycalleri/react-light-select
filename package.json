@@ -3,14 +3,21 @@
   "version": "0.1.0",
   "description": "A lightweight selectbox component for ReactJS",
   "main": "dist/react-light-select.min.js",
-  "license": "LicenseRef-LICENSE",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dannycalleri/react-light-select.git"
+  },
   "scripts": {
     "build": "gulp build",
     "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bugs": {
+    "url": "https://github.com/dannycalleri/react-light-select/issues"
+  },
   "author": "Danny Calleri",
-  "homepage": "http://dannycalleri.com",
+  "homepage": "https://github.com/dannycalleri/react-light-select",
   "keywords": [
     "react-component",
     "react",
