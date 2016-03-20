@@ -6,7 +6,7 @@ The elements list is your browser's default and works on **every browser and dev
 
 
 
-## How to use it
+## Install
 
 Simply **run**
 
@@ -33,7 +33,7 @@ Then use it like this (JSX style, but you are free to use it in plain JS):
     <ReactLightSelect dataCallback={data} />
 
 
-## How to build it
+## Build
 
 The component is written in **ES6** and **JSX**, so you need to compile it first.
 
@@ -48,7 +48,7 @@ and then open up the test environment with the command
 This command will open a web page with live reload so you can develop and see the changes in realtime.
 
 
-## Contributing
+## Contribute
 
 Contributions are welcome!
 
