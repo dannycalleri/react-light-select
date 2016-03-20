@@ -8,12 +8,13 @@ The elements list is your browser's default and works on **every browser and dev
 
 ## How to use it
 
-Simply run
+Simply **run**
 
     npm install react-light-select --save
 
-and require it with your favorite bundler (currently tested with **Browserify**).
+and **require it** with your favorite bundler (currently tested with **Browserify**).
 
+Don't forget to **include the provided CSS** (or write your own)
 
 Example:
 
@@ -22,6 +23,10 @@ Example:
 or if you're using **ES6**
 
     import ReactLightSelect from 'react-light-select';
+
+**Include the CSS** in your HTML:
+
+    <link rel="stylesheet" href="react-light-select.css" media="screen">
 
 Then use it like this (JSX style, but you are free to use it in plain JS):
 
