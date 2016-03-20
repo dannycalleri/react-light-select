@@ -1,8 +1,8 @@
 # react-light-select
 
-**react-light-select** is a ReactJS **lightweight selectbox** component (~3kb minified) that lets you define your options and a callback for when the selection changes.
+**react-light-select** is a **lightweight ReactJS selectbox** component (**~3kb** minified) that lets you define your options and a callback for when the selection changes.
 
-The elements list is your browser's default and works on every browser and device, it doesn't define a custom elements list.
+The elements list is your browser's default and works on **every browser and device**, it doesn't define a custom elements list.
 
 
 
