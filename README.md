@@ -24,9 +24,9 @@ or if you're using **ES6**
 
     import ReactLightSelect from 'react-light-select';
 
-**Include the CSS** in your HTML:
+**Include the CSS** in your HTML (change the path to your needs):
 
-    <link rel="stylesheet" href="react-light-select.css" media="screen">
+    <link rel="stylesheet" href="../node_modules/react-light-select/examples/react-light-select.css" media="screen">
 
 Then use it like this (JSX style, but you are free to use it in plain JS):
 
