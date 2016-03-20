@@ -9,6 +9,8 @@ class ReactLightSelect extends React.Component
             options: [],
             selectedOption: ''
         };
+
+        this.onSelectChange = this.onSelectChange.bind(this);
     }
 
     onSelectChange(e)
@@ -17,10 +19,19 @@ class ReactLightSelect extends React.Component
         var label = arr.filter(function(n){
             return n.value === e.target.value;
         })[0].innerHTML;
-        this.props.onSelectChange({
-            label: label,
-            value: e.target.value
+
+        this.setState({
+            selectedOption: label
         });
+
+        if(typeof this.props.onSelectChange !== "undefined")
+        {
+            // calling user defined callback
+            this.props.onSelectChange({
+                label: label,
+                value: e.target.value
+            });
+        }
     }
 
     componentDidMount()
@@ -68,8 +79,5 @@ ReactLightSelect.propTypes = {
     dataCallback: React.PropTypes.func.isRequired,
     onSelectChange: React.PropTypes.func.isRequired
 };
-
-// ReactLightSelect.defaultProps = {
-// };
 
 export default ReactLightSelect;
