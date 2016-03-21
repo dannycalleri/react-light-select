@@ -1,6 +1,6 @@
 {
   "name": "react-light-select",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A lightweight selectbox component for ReactJS",
   "main": "dist/react-light-select.min.js",
   "license": "MIT",
