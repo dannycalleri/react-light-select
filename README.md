@@ -1,4 +1,4 @@
-# React Light Select
+# React Light Select - [Demo](http://dannycalleri.github.io/react-light-select/)
 
 [![npm](https://img.shields.io/npm/v/react-light-select.svg)](https://www.npmjs.com/package/react-light-select)
 
