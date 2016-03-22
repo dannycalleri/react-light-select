@@ -2,11 +2,11 @@
 .react-light-select
 {
     position:relative;
-    width: 100px;
-    height: 30px;
-    line-height: 30px;
+    width: 130px;
+    height: 40px;
+    line-height: 40px;
     border: 1px solid #999;
-    padding: 5px 10px;
+    padding: 0 10px;
     border-radius: 3px;
 }
 
@@ -26,10 +26,10 @@
     right: 0;
     width: 0;
     height: 0;
-    margin-top: -4px;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 8px solid #999;
+    margin-top: -2.5px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #999;
 }
 
 .react-light-select select
