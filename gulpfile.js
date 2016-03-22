@@ -103,10 +103,9 @@ gulp.task('js', function(){
         .bundle()
         .pipe(source('react-light-select.js'))
         .pipe(buffer())
-        .pipe(gulp.dest(building ? paths.distBuild : paths.debugBuild))
-        .pipe(gulpIf(building, uglify().on('error', gulpUtil.log)))
+        .pipe(uglify().on('error', gulpUtil.log))
         .pipe(rename({ extname: '.min.js' }))
-        .pipe(gulp.dest(building ? paths.distBuild : paths.debugBuild))
+        .pipe(gulp.dest(paths.debugBuild))
         .pipe(reload({stream: true}));
 });
 
