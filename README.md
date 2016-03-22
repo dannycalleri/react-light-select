@@ -1,5 +1,7 @@
 # React Light Select
 
+[View Demo](http://dannycalleri.github.io/react-light-select/)
+
 [![npm](https://img.shields.io/npm/v/react-light-select.svg)](https://www.npmjs.com/package/react-light-select)
 
 **react-light-select** is a **lightweight ReactJS selectbox** component (**~3kb** minified) that lets you define your options and a callback for when the selection changes.
