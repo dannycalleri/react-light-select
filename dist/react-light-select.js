@@ -24,7 +24,7 @@ var ReactLightSelect = function (_React$Component) {
     function ReactLightSelect(props) {
         _classCallCheck(this, ReactLightSelect);
 
-        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ReactLightSelect).call(this, props));
+        var _this = _possibleConstructorReturn(this, (ReactLightSelect.__proto__ || Object.getPrototypeOf(ReactLightSelect)).call(this, props));
 
         _this.state = {
             options: [],
