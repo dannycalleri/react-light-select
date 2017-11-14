@@ -16,7 +16,7 @@ Simply **run**
 
     npm install react-light-select --save
 
-and **require it** with your favorite bundler (currently tested with **Browserify**).
+and **require it** with your favorite bundler (tested with **Browserify** and **Webpack**).
 
 Don't forget to **include the provided CSS** (or write your own)
 
@@ -34,42 +34,60 @@ or if you're using **ES6**
 
 Then use it like this (JSX style, but you are free to use it in plain JS):
 
-    <ReactLightSelect dataCallback={ this.getData } onSelectChange={ this.onSelect } />
+    <ReactLightSelect 
+        value={this.state.selectOption} 
+        data={'a'}
+        onSelectChange={this.onChange}
+    />
 
 
 ## Configuration
 
-The most basic select must have both **dataCallaback** and **onSelectChange** props, for example:
+The most basic select must have **data** and **onSelectChange** props, for example:
 
-    <ReactLightSelect dataCallback={ this.getData } onSelectChange={ this.onSelect } />
+    <ReactLightSelect 
+        value={this.state.selectOption} 
+        data={'a'}
+        onSelectChange={this.onChange}
+    />
     
 Following there's a complete list of props you can pass to the component.
     
 ### Props   
 
-#### `dataCallback`
+### `data`
 
-type: `function`
+type: `array`
 
 This is needed to populate the selectbox.
 
 Example:
 
-    getSelectboxData(cb)
-    {
-        var options = [
-            {label:"US", value:"us"},
-            {label:"IT", value:"it"}
-        ];
+    const data = [
+        {label:"Option A", value:"a"},
+        {label:"Option B", value:"b"},
+        {label:"Option C", value:"c"}
+    ];
 
-        cb(options);
-    }
+    return options;
+
+    <ReactLightSelect 
+        value={this.state.selectOption} 
+        data={'a'}
+        onSelectChange={this.onChange}
+    />
 
 #### `onSelectChange`
 
 type: `function`
 
 This gets called when a the user selects a new option.
+
+### `value`
+
+type: `string`
+
+Default value.
 
 
 ## Build
