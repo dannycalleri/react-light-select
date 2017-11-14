@@ -13,14 +13,15 @@ class Main extends React.Component
     {
         super(props);
         this.state = {
-            label: ''
+            label: '',
+            selectOption: '',
         };
 
         this.data = this.data.bind(this);
         this.change = this.change.bind(this);
     }
 
-    data(cb)
+    data()
     {
         var options = [
             {label:"Option A", value:"a"},
@@ -28,13 +29,13 @@ class Main extends React.Component
             {label:"Option C", value:"c"}
         ];
 
-        cb(options);
+        return options;
     }
 
-    change(e)
+    change(value)
     {
         this.setState({
-            label: JSON.stringify(e).replace(/"/g, '')
+            selectOption: value,
         });
     }
 
@@ -42,15 +43,10 @@ class Main extends React.Component
     {
         return (
             <div>
-                <ReactLightSelect dataCallback={this.data} onSelectChange={this.change} />
-                {
-                    this.state.label !== '' ?
-                        <div className="selection">
-                            User selection: { this.state.label }
-                        </div>
-                    :
-                        ''
-                }
+                <ReactLightSelect value={this.state.selectOption} data={this.data()} onSelectChange={this.change} />
+                <pre>
+                    State: {this.state.selectOption}
+                </pre>
             </div>
         );
     }

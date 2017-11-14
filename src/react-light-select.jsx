@@ -6,66 +6,47 @@ class ReactLightSelect extends React.Component
     {
         super(props);
         this.state = {
-            options: [],
-            selectedOption: ''
+            options: props.data,
+            selectedOption: this.getOptionFromValue(props.data, props.value)
         };
 
         this.onSelectChange = this.onSelectChange.bind(this);
     }
 
-    onSelectChange(e)
-    {
-        var arr = [].slice.call(e.target.children);
-        var label = arr.filter(function(n){
-            return n.value === e.target.value;
-        })[0].innerHTML;
-
-        this.setState({
-            selectedOption: label
-        });
-
-        if(typeof this.props.onSelectChange !== "undefined")
-        {
-            // calling user defined callback
-            this.props.onSelectChange({
-                label: label,
-                value: e.target.value
-            });
-        }
+    getOptionFromValue(options, value){
+        return options.find(o => o.value === value);
     }
 
-    componentDidMount()
+    onSelectChange(e)
     {
-        this.props.dataCallback(function(options){
-            this.setState({
-                selectedOption: options[0].label,
-                options: options
-            });
-        }.bind(this));
+        this.props.onSelectChange(e.target.value);
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(nextProps.value){
+            this.setState({ selectedOption: this.getOptionFromValue(this.state.options, nextProps.value) });
+        }
     }
 
     render()
     {
-        var select = '';
-        if(this.state.options.length > 0)
-        {
-            select = (
-                <div className={ typeof this.props.className !== 'undefined' ? this.props.className : 'react-light-select' }>
-                    <div className="placeholder">
-                        { this.state.selectedOption }
-                    </div>
-                    <select onChange={ this.onSelectChange }>
-                        {
-                            this.state.options.map(function(o,i){
-                                return (
-                                    <option key={i} value={o.value}>{o.label}</option>
-                                )
-                            })
-                        }
-                    </select>
+        const select = this.state.options.length === 0 ? null : (
+            <div className={ typeof this.props.className !== 'undefined' ? this.props.className : 'react-light-select' }>
+                <div className="placeholder">
+                    { this.state.selectedOption ? this.state.selectedOption.label : 'Select...' }
                 </div>
-            );
-        }
+                <select onChange={ this.onSelectChange } value={this.state.selectedOption ? this.state.selectedOption.value : ''}>
+                    <option key={'disabled'} value='' disabled>Select...</option>
+                    {
+                        this.state.options.map(function(o,i){
+                            return (
+                                <option key={i} value={o.value}>{o.label}</option>
+                            )
+                        })
+                    }
+                </select>
+            </div>
+        );
 
         return (
             <div>
@@ -76,8 +57,9 @@ class ReactLightSelect extends React.Component
 }
 
 ReactLightSelect.propTypes = {
-    dataCallback: React.PropTypes.func.isRequired,
-    onSelectChange: React.PropTypes.func.isRequired
+    data: React.PropTypes.array.isRequired,
+    onSelectChange: React.PropTypes.func.isRequired,
+    value: React.PropTypes.string.isRequired
 };
 
 export default ReactLightSelect;

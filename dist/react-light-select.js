@@ -24,11 +24,11 @@ var ReactLightSelect = function (_React$Component) {
     function ReactLightSelect(props) {
         _classCallCheck(this, ReactLightSelect);
 
-        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ReactLightSelect).call(this, props));
+        var _this = _possibleConstructorReturn(this, (ReactLightSelect.__proto__ || Object.getPrototypeOf(ReactLightSelect)).call(this, props));
 
         _this.state = {
-            options: [],
-            selectedOption: ''
+            options: props.data,
+            selectedOption: _this.getOptionFromValue(props.data, props.value)
         };
 
         _this.onSelectChange = _this.onSelectChange.bind(_this);
@@ -36,61 +36,52 @@ var ReactLightSelect = function (_React$Component) {
     }
 
     _createClass(ReactLightSelect, [{
-        key: 'onSelectChange',
-        value: function onSelectChange(e) {
-            var arr = [].slice.call(e.target.children);
-            var label = arr.filter(function (n) {
-                return n.value === e.target.value;
-            })[0].innerHTML;
-
-            this.setState({
-                selectedOption: label
+        key: 'getOptionFromValue',
+        value: function getOptionFromValue(options, value) {
+            return options.find(function (o) {
+                return o.value === value;
             });
-
-            if (typeof this.props.onSelectChange !== "undefined") {
-                // calling user defined callback
-                this.props.onSelectChange({
-                    label: label,
-                    value: e.target.value
-                });
-            }
         }
     }, {
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            this.props.dataCallback(function (options) {
-                this.setState({
-                    selectedOption: options[0].label,
-                    options: options
-                });
-            }.bind(this));
+        key: 'onSelectChange',
+        value: function onSelectChange(e) {
+            this.props.onSelectChange(e.target.value);
+        }
+    }, {
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps) {
+            if (nextProps.value) {
+                this.setState({ selectedOption: this.getOptionFromValue(this.state.options, nextProps.value) });
+            }
         }
     }, {
         key: 'render',
         value: function render() {
-            var select = '';
-            if (this.state.options.length > 0) {
-                select = _react2.default.createElement(
+            var select = this.state.options.length === 0 ? null : _react2.default.createElement(
+                'div',
+                { className: typeof this.props.className !== 'undefined' ? this.props.className : 'react-light-select' },
+                _react2.default.createElement(
                     'div',
-                    { className: typeof this.props.className !== 'undefined' ? this.props.className : 'react-light-select' },
+                    { className: 'placeholder' },
+                    this.state.selectedOption ? this.state.selectedOption.label : 'Select...'
+                ),
+                _react2.default.createElement(
+                    'select',
+                    { onChange: this.onSelectChange, value: this.state.selectedOption ? this.state.selectedOption.value : '' },
                     _react2.default.createElement(
-                        'div',
-                        { className: 'placeholder' },
-                        this.state.selectedOption
+                        'option',
+                        { key: 'disabled', value: '', disabled: true },
+                        'Select...'
                     ),
-                    _react2.default.createElement(
-                        'select',
-                        { onChange: this.onSelectChange },
-                        this.state.options.map(function (o, i) {
-                            return _react2.default.createElement(
-                                'option',
-                                { key: i, value: o.value },
-                                o.label
-                            );
-                        })
-                    )
-                );
-            }
+                    this.state.options.map(function (o, i) {
+                        return _react2.default.createElement(
+                            'option',
+                            { key: i, value: o.value },
+                            o.label
+                        );
+                    })
+                )
+            );
 
             return _react2.default.createElement(
                 'div',
@@ -104,8 +95,9 @@ var ReactLightSelect = function (_React$Component) {
 }(_react2.default.Component);
 
 ReactLightSelect.propTypes = {
-    dataCallback: _react2.default.PropTypes.func.isRequired,
-    onSelectChange: _react2.default.PropTypes.func.isRequired
+    data: _react2.default.PropTypes.array.isRequired,
+    onSelectChange: _react2.default.PropTypes.func.isRequired,
+    value: _react2.default.PropTypes.string.isRequired
 };
 
 exports.default = ReactLightSelect;

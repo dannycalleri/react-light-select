@@ -74,25 +74,11 @@ gulp.task('build-js', function(){
 			presets: ["es2015", "react"]
 		}))
         .pipe(rename('react-light-select.js'))
-        // .pipe(source('react-light-select.js'))
-        // .pipe(buffer())
         .pipe(gulp.dest(building ? paths.distBuild : paths.debugBuild))
         .pipe(gulpIf(building, uglify().on('error', gulpUtil.log)))
         .pipe(rename({ extname: '.min.js' }))
         .pipe(gulp.dest(building ? paths.distBuild : paths.debugBuild))
         .pipe(reload({stream: true}));
-
-    // Setting debug to "true" will automatically generate source maps,
-    // this way it's possible to debug individual .jsx files
-        // .transform(babelify, {presets: ["es2015", "react"]})
-        // .bundle()
-        // .pipe(source('react-light-select.js'))
-        // .pipe(buffer())
-        // .pipe(gulp.dest(building ? paths.distBuild : paths.debugBuild))
-        // .pipe(gulpIf(building, uglify().on('error', gulpUtil.log)))
-        // .pipe(rename({ extname: '.min.js' }))
-        // .pipe(gulp.dest(building ? paths.distBuild : paths.debugBuild))
-        // .pipe(reload({stream: true}));
 });
 
 gulp.task('js', function(){
