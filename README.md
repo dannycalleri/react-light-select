@@ -69,11 +69,9 @@ Example:
         {label:"Option C", value:"c"}
     ];
 
-    return options;
-
     <ReactLightSelect 
-        value={this.state.selectOption} 
-        data={'a'}
+        value={'a'}
+        data={data}
         onSelectChange={this.onChange}
     />
 
